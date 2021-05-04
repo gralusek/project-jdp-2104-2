@@ -1,5 +1,6 @@
 package com.kodilla.ecommercee;
 
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -9,26 +10,32 @@ import java.util.List;
 @RequestMapping("/v1/cart")
 public class CartController {
 
-    @PostMapping(value = "createCart")
+    @GetMapping(value = "getCart")
+    public CartDto getCart(@RequestParam Long cartId){
+        return new CartDto(cartId);
+    }
+
+    @PostMapping(value = "createCart", consumes = MediaType.APPLICATION_JSON_VALUE )
     public void createCart(@RequestBody CartDto cartDto){
 
     }
 
     @GetMapping(value = "getFromCart")
-    public List<CartDto> getFromCart(){
-        List<CartDto> cart = new ArrayList<>();
-        return cart;
+    public List<ProductDto> getFromCart(@RequestParam Long cartId){
+        List<ProductDto> products = new ArrayList<>();
+        return products;
     }
 
     @PutMapping(value = "addElementToCart")
-    public void addElementToCart(@RequestBody CartDto cartDto){
+    public void addElementToCart(@RequestParam Long productId, @RequestParam Long cartId){
     }
 
     @DeleteMapping(value = "deleteElementFromCart")
-    public void deleteElementFromCart(@RequestParam Long id){
+    public void deleteElementFromCart(@RequestParam Long cartId, @RequestParam Long productId){
     }
 
     @PostMapping(value = "createOrder")
-    public void createOrder(@RequestBody CartDto cartDto){
+    public OrderDto createOrder(@RequestParam Long cartId){
+        return new OrderDto(cartId);
     }
 }
