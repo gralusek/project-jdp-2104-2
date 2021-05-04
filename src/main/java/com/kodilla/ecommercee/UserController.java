@@ -6,13 +6,13 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/group_project/user")
+@RequestMapping("/v1/user")
 @RequiredArgsConstructor
 public class UserController {
 
     @PostMapping(value = "createUser", consumes = MediaType.APPLICATION_JSON_VALUE)
     public void createUser(@RequestBody userDto userDto) {
-        
+
     }
 
     @PutMapping(value = "blockUser")
