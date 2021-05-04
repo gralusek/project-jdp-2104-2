@@ -1,5 +1,6 @@
 package com.kodilla.ecommercee;
 
+import com.kodilla.ecommercee.Dto.userDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -9,20 +10,18 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class UserController {
 
-    //PLACE FOR PARAMETERS
-
-    @PostMapping(value = "createUser"/*, consumes = MediaType.APPLICATION_JSON_VALUE*/)
-    public void createUser(/*@RequestBody userDto userDto*/) {
+    @PostMapping(value = "createUser", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public void createUser(@RequestBody userDto userDto) {
         
     }
 
     @PutMapping(value = "blockUser")
-    public void blockUser(@RequestParam int userId) {
+    public void blockUser(@RequestParam long userId) {
 
     }
 
     @PutMapping(value = "generateKey")
-    public int generateKey(@RequestParam int userId) {
+    public int generateKey(@RequestParam long userId) {
         int key = 123456789;
         return key;
     }
