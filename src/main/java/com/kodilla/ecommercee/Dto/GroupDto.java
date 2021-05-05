@@ -8,7 +8,7 @@ import java.util.List;
 
 @AllArgsConstructor
 @Getter
-public class GroupsDto {
+public class GroupDto {
     private Long groupId;
     private String name;
     private List<ProductDto> productDtoList;
