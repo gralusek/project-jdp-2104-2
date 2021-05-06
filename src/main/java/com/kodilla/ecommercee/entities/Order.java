@@ -1,4 +1,4 @@
-package com.kodilla.ecommercee.domain;
+package com.kodilla.ecommercee.entities;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -13,8 +13,11 @@ import javax.persistence.*;
 public class Order {
     @Id
     @GeneratedValue
-    @Column
+    @Column(name = "orderId", nullable = false)
     private long orderId;
+
+    @Column(name = "status")
+    private OrderStatus status;
 
     @ManyToOne
     @JoinColumn(name = "userId")
