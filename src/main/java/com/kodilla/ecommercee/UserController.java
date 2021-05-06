@@ -1,6 +1,6 @@
 package com.kodilla.ecommercee;
 
-import com.kodilla.ecommercee.Dto.userDto;
+import com.kodilla.ecommercee.Dto.UserDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 public class UserController {
 
     @PostMapping(value = "createUser", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void createUser(@RequestBody userDto userDto) {
+    public void createUser(@RequestBody UserDto userDto) {
 
     }
 
