@@ -38,7 +38,6 @@ public class CartController {
     }
 
     @PostMapping(value = "createOrder")
-    public OrderDto createOrder(@RequestParam Long cartId){
-        return new OrderDto(cartId);
+    public void createOrder(@RequestBody OrderDto orderDto){
     }
 }
