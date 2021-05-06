@@ -7,4 +7,5 @@ import lombok.Getter;
 @AllArgsConstructor
 public class ProductDto {
     private Long id;
+    private GroupDto groupsDto;
 }
