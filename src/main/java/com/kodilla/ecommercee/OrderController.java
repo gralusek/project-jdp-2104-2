@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
+@RequestMapping("/v1/order")
 public class OrderController {
 
     @GetMapping(value = "getOrders")
