@@ -13,10 +13,15 @@ import javax.persistence.*;
 public class Order {
     @Id
     @GeneratedValue
-    @Column
+    @Column(name = "orderId", nullable = false)
     private long orderId;
+
+    @Column(name = "status")
+    @Enumerated(EnumType.STRING)
+    private OrderStatus status;
 
     @ManyToOne
     @JoinColumn(name = "userId")
     private User user;
+    
 }
