@@ -13,7 +13,7 @@ import javax.persistence.*;
 public class Order {
     @Id
     @GeneratedValue
-    @Column(name = "orderId", nullable = false)
+    @Column(name = "id", nullable = false)
     private long orderId;
 
     @Column(name = "status")
@@ -23,5 +23,9 @@ public class Order {
     @ManyToOne
     @JoinColumn(name = "userId")
     private User user;
+
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "cartId")
+    private Cart cart;
     
 }

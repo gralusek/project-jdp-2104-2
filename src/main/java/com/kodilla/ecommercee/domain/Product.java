@@ -38,8 +38,8 @@ public class Product {
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable (
         name = "Join_Cart_Product",
-        joinColumns = {@JoinColumn(name = "Product_Id", referencedColumnName = "Product_Id")},
-            inverseJoinColumns = {@JoinColumn(name = "Cart_Id", referencedColumnName = "Cart_Id")}
+        joinColumns = {@JoinColumn(name = "Product_Id", referencedColumnName = "id")},
+            inverseJoinColumns = {@JoinColumn(name = "Cart_Id", referencedColumnName = "id")}
     )
     private List<Cart> productsInCart;
 }
