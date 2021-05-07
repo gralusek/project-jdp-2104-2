@@ -15,7 +15,7 @@ public class CartController {
 
     @GetMapping(value = "getCart")
     public CartDto getCart(@RequestParam Long cartId){
-        return new CartDto(cartId);
+        return new CartDto(cartId, new ArrayList<>(), new OrderDto(cartId));
     }
 
     @PostMapping(value = "createCart", consumes = MediaType.APPLICATION_JSON_VALUE )
