@@ -22,7 +22,7 @@ public class OrderController {
     }
 
     @GetMapping(value = "getOrder")
-    public OrderDto getOrder(@RequestParam OrderDto Orderid) {
+    public OrderDto getOrder(@RequestParam OrderDto id) {
         OrderDto exampleOrder = new OrderDto(1L,"example Order");
         return exampleOrder;
     }
@@ -34,7 +34,7 @@ public class OrderController {
     }
 
     @DeleteMapping(value = "deleteOrder")
-    public OrderDto deleteOrder(@RequestParam OrderDto Orderid) {
+    public OrderDto deleteOrder(@RequestParam OrderDto id) {
         return null;
     }
 }
