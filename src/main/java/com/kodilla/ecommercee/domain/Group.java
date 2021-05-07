@@ -18,11 +18,14 @@ public class Group {
     @Column(name = "ID")
     private Long id;
 
+    @Column(name = "name", nullable = false)
+    private String name;
+
     @OneToMany(
             targetEntity = Product.class,
             mappedBy = "group",
             cascade = CascadeType.ALL,
             fetch = FetchType.LAZY
     )
-    private List<Product> product;
+    private List<Product> products;
 }
