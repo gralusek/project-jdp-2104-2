@@ -15,7 +15,7 @@ public class Cart {
 
     @Id
     @GeneratedValue
-    @Column(name = "Cart_Id")
+    @Column(name = "id")
     private Long id;
 
     @ManyToMany (cascade = CascadeType.ALL,fetch = FetchType.EAGER, mappedBy = "productsInCart")

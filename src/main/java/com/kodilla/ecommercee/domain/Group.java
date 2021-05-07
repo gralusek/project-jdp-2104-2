@@ -15,7 +15,7 @@ public class Group {
 
     @Id
     @GeneratedValue
-    @Column(name = "ID")
+    @Column(name = "Id")
     private Long id;
 
     @OneToMany(
@@ -24,5 +24,5 @@ public class Group {
             cascade = CascadeType.ALL,
             fetch = FetchType.LAZY
     )
-    private List<Product> product;
+    private List<Product> products;
 }
