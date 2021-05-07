@@ -17,6 +17,7 @@ public class Order {
     private long orderId;
 
     @Column(name = "status")
+    @Enumerated(EnumType.STRING)
     private OrderStatus status;
 
     @ManyToOne
