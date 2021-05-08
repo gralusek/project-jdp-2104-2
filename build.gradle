@@ -37,3 +37,7 @@ dependencies {
     testAnnotationProcessor ('org.projectlombok:lombok:1.18.16')
     runtimeOnly ('mysql:mysql-connector-java')
 }
+
+test {
+    useJUnitPlatform()
+}

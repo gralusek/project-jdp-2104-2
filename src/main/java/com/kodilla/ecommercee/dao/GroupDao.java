@@ -8,6 +8,6 @@ import javax.transaction.Transactional;
 import java.util.List;
 
 @Repository
-public interface GroupDao extends CrudRepository<Group,Integer> {
+public interface GroupDao extends CrudRepository<Group,Long> {
 
 }
