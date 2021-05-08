@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @NoArgsConstructor
@@ -14,10 +15,10 @@ import java.util.List;
 public class Group {
     @Id
     @GeneratedValue
-    @Column(name = "groupId", nullable = false)
+    @Column(name = "groupId")
     private Long groupId;
 
-    @Column(name = "name", nullable = false)
+    @Column(name = "name")
     private String name;
 
     @OneToMany(
