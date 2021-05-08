@@ -3,6 +3,7 @@ package com.kodilla.ecommercee.domain;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.util.*;
 import javax.persistence.*;
@@ -11,11 +12,12 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
-@Entity(name = "User")
+@Setter
+@Entity(name = "Users")
 public class User {
     @Id
     @GeneratedValue
-    @Column(name = "userId", nullable = false)
+    @Column(name = "id", nullable = false)
     private long userId;
 
     @Column(name = "username", nullable = false)

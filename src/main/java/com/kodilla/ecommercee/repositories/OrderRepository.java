@@ -8,13 +8,4 @@ import java.util.*;
 
 public interface OrderRepository extends CrudRepository<Order, Long> {
 
-    @Override
-    Order save(final Order order);
-
-    @Override
-    Optional<Order> findById(final Long id);
-
-    @Override
-    void deleteById(final Long id);
-
 }

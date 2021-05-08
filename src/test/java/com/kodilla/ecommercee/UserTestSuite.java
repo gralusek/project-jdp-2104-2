@@ -26,7 +26,7 @@ public class UserTestSuite {
     private OrderRepository orderRepository;
 
     @Test
-    public void testUserDbService() {
+    public void testUserCreateReadDelete() {
         //Given
         User user = new User("testUserName");
 
@@ -35,17 +35,41 @@ public class UserTestSuite {
 
         //Then
         long id = user.getUserId();
-        System.out.println("User id and name: " + user.getUserId() + ", " + user.getUsername());
         Optional<User> result = userService.findUserById(id);
         assertTrue(result.isPresent());
 
+        try{
+            userService.deleteById(id);
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+
+        Optional<User> resultAfterDelete = userService.findUserById(id);
+        assertFalse(resultAfterDelete.isPresent());
+    }
+
+    @Test
+    public void testUserUpdate() throws UserNotExist {
+        //Given
+        User user = new User("testUserName");
+
+        //When
+        userService.saveUser(user);
+
+        //Then
+        long id = user.getUserId();
+        User result = userService.findUserById(id).orElseThrow(UserNotExist::new);
+        result.setUsername("updatedName");
+        assertEquals("updatedName", result.getUsername());
+
         //CleanUp
         try{
-        userService.deleteById(id);
+            userService.deleteById(id);
         } catch (Exception e) {
             System.out.println(e);
         }
     }
+
 
     @Test
     public void testUserGenerateKey() throws UserNotExist {
@@ -72,7 +96,7 @@ public class UserTestSuite {
     }
 
     @Test
-    public void testOfRelations() throws UserNotExist, OrderNotExist {
+    public void testOfRelation() {
         //Given
         User user = new User("testUserName");
         Order order = new Order(user);
@@ -93,4 +117,5 @@ public class UserTestSuite {
         }
         assertFalse(orderRepository.findById(orderId).isPresent());
     }
+
 }
