@@ -14,7 +14,7 @@ import java.util.List;
 public class Group {
     @Id
     @GeneratedValue
-    @Column(name = "groupId", nullable = false)
+    @Column(name = "id", nullable = false)
     private Long groupId;
 
     @Column(name = "name", nullable = false)

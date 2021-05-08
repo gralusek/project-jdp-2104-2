@@ -14,7 +14,7 @@ import java.util.List;
 public class Product {
     @Id
     @GeneratedValue
-    @Column(name = "productId")
+    @Column(name = "id")
     private Long productId;
 
     @ManyToOne

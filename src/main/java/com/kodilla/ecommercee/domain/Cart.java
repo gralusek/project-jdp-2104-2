@@ -10,17 +10,18 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
-@Entity(name = "Cart")
+@Entity(name = "Carts")
 public class Cart {
     @Id
     @GeneratedValue
+    @Column(name = "id")
     private Long cartId;
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
-            name = "products_in_carts",
-            joinColumns = {@JoinColumn(name = "cartId", referencedColumnName = "cartId")},
-                inverseJoinColumns = {@JoinColumn(name = "productId", referencedColumnName = "productId")}
+            name = "productsInCarts",
+            joinColumns = {@JoinColumn(name = "cartId", referencedColumnName = "id")},
+                inverseJoinColumns = {@JoinColumn(name = "productId", referencedColumnName = "id")}
     )
     private List<Product> products;
 
