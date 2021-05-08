@@ -8,11 +8,11 @@ import java.time.LocalDateTime;
 
 @AllArgsConstructor
 @Getter
-public class userDto {
+public class UserDto {
     private long userId;
     @NonNull
     private String username;
-    private boolean status;
+    private boolean isBlocked;
     private int userKey;
     private LocalDateTime keyValidDate;
 }
