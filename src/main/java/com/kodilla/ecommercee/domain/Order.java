@@ -25,4 +25,8 @@ public class Order {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "userId")
     private User user;
+
+    public Order(User user) {
+        this.user = user;
+    }
 }
