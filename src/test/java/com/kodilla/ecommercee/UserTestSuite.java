@@ -26,7 +26,28 @@ public class UserTestSuite {
     private OrderRepository orderRepository;
 
     @Test
-    public void testUserCreateReadDelete() {
+    public void testUserCreate() {
+        //Given
+        User user = new User("testUserName");
+
+        //When
+        userService.saveUser(user);
+
+        //Then
+        long id = user.getUserId();
+        long result = userService.count();
+        assertEquals(1,result);
+
+        //Clean up
+        try{
+            userService.deleteById(id);
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+
+    @Test
+    public void testUserRead() {
         //Given
         User user = new User("testUserName");
 
@@ -38,15 +59,14 @@ public class UserTestSuite {
         Optional<User> result = userService.findUserById(id);
         assertTrue(result.isPresent());
 
+        //Clean up
         try{
             userService.deleteById(id);
         } catch (Exception e) {
             System.out.println(e);
         }
-
-        Optional<User> resultAfterDelete = userService.findUserById(id);
-        assertFalse(resultAfterDelete.isPresent());
     }
+
 
     @Test
     public void testUserUpdate() throws UserNotExist {
@@ -70,6 +90,25 @@ public class UserTestSuite {
         }
     }
 
+    @Test
+    public void testUserDelete() {
+        //Given
+        User user = new User("testUserName");
+
+        //When
+        userService.saveUser(user);
+
+        //Then
+        long id = user.getUserId();
+        try{
+            userService.deleteById(id);
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        Optional<User> resultAfterDelete = userService.findUserById(id);
+        assertFalse(resultAfterDelete.isPresent());
+    }
+
 
     @Test
     public void testUserGenerateKey() throws UserNotExist {
@@ -83,7 +122,6 @@ public class UserTestSuite {
         //Then
         long id = user.getUserId();
         User result = userService.findUserById(id).orElseThrow(UserNotExist::new);
-        System.out.println("User key and valid: " + result.getUserKey() + ", " + result.getKeyValidDate());
         assertNotNull(result.getUserKey());
         assertNotNull(result.getKeyValidDate());
 
@@ -108,12 +146,11 @@ public class UserTestSuite {
         //Then
         long userId = user.getUserId();
         long orderId = order.getOrderId();
-
         assertTrue(orderRepository.findById(orderId).isPresent());
         try {
             userService.deleteById(userId);
         } catch (Exception e) {
-            //do nothing
+            System.out.println(e);
         }
         assertFalse(orderRepository.findById(orderId).isPresent());
     }

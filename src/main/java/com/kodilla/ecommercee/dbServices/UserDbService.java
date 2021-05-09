@@ -25,4 +25,8 @@ public class UserDbService {
     public void deleteById (final Long id) {
         repository.deleteById(id);
     }
+
+    public long count () {
+        return repository.count();
+    }
 }
