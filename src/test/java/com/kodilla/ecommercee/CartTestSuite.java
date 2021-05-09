@@ -1,4 +1,3 @@
-/*
 package com.kodilla.ecommercee;
 
 import com.kodilla.ecommercee.domain.Cart;
@@ -137,30 +136,31 @@ public class CartTestSuite {
         assertFalse(cartRepository.existsById(cartId));
     }
 
-    */
-/*public void relationsTestWithProduct () throws ProductNotExist {
+    @Test
+    public void relationsTest () throws ProductNotExist {
         //Given
         Cart cart = new Cart();
         Product product = new Product();
+        Product product2 = new Product();
         Order order = new Order();
         cart.getProducts().add(product);
+        cart.getProducts().add(product2);
         cart.setOrder(order);
         product.getCarts().add(cart);
+        product2.getCarts().add(cart);
         order.setStatus(OrderStatus.ACCEPTED_FOR_REALISATION);
         cartRepository.save(cart);
 
-        //When
-        long cartId = cart.getCartId();
+        //When & Then
+        assertEquals(1,orderRepository.count());
+        assertEquals(2,productRepository.count());
 
-        try {
-            cartRepository.deleteById(cartId);
+        //Clean Up
+        try{
+            cartRepository.deleteById(cart.getCartId());
         } catch (Exception e) {
-            //do nothing
+            System.out.println(e);
         }
-        //Then
-        assertFalse(productRepository.findById(product.getProductId()).isPresent());
-    }*//*
-
+    }
 
 }
-*/

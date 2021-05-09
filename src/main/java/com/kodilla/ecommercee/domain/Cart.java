@@ -25,7 +25,7 @@ public class Cart {
             joinColumns = {@JoinColumn(name = "cartId", referencedColumnName = "id")},
                 inverseJoinColumns = {@JoinColumn(name = "productId", referencedColumnName = "id")}
     )
-    private List<Product> products = new ArrayList<>();
+    private List<Product> products;
 
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "orderId")
