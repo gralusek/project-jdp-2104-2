@@ -15,8 +15,8 @@ public class Group {
 
     @Id
     @GeneratedValue
-    @Column(name = "ID")
-    private Long id;
+    @Column(name = "id", nullable = false)
+    private Long groupId;
 
     @Column(name = "name", nullable = false)
     private String name;
