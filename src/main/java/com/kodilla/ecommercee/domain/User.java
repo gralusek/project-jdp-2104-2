@@ -13,11 +13,11 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Getter
 @Setter
-@Entity(name = "User")
+@Entity(name = "Users")
 public class User {
     @Id
     @GeneratedValue
-    @Column(name = "userId", nullable = false)
+    @Column(name = "id", nullable = false)
     private long userId;
 
     @Column(name = "username", nullable = false)
