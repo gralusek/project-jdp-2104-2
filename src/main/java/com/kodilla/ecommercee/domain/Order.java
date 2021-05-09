@@ -28,4 +28,7 @@ public class Order {
     @JoinColumn(name = "cartId")
     private Cart cart;
     
+    public Order(User user) {
+        this.user = user;
+    }
 }
