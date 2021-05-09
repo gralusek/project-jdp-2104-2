@@ -1,11 +1,12 @@
 package com.kodilla.ecommercee.domain;
 
-import com.kodilla.ecommercee.Repository.OrderRepository;
-
-import com.kodilla.ecommercee.Repository.UserRespository;
+import com.kodilla.ecommercee.repositories.OrderRepository;
+import com.kodilla.ecommercee.repositories.UserRepository;
 import org.junit.jupiter.api.Test;
+import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -14,6 +15,7 @@ import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+@RunWith(SpringRunner.class)
 @SpringBootTest
 public class OrderTestSuite {
 
@@ -21,7 +23,7 @@ public class OrderTestSuite {
     OrderRepository orderRepository;
 
     @Autowired
-    UserRespository userRespository;
+    UserRepository userRepository;
 
     @Test
     public void testCreateOrder() {
@@ -118,15 +120,15 @@ public class OrderTestSuite {
         Long id2 = order2.getOrderId();
         orderRepository.save(order3);
         Long id3 = order3.getOrderId();
-        userRespository.save(user);
+        userRepository.save(user);
 
         //Then
-        assertEquals(3, user.getOrders().size());
+        assertEquals(3, orderRepository.count());
 
         //Cleanup
         orderRepository.deleteById(id1);
         orderRepository.deleteById(id2);
         orderRepository.deleteById(id3);
-        userRespository.delete(user);
+        userRepository.delete(user);
     }
 }
