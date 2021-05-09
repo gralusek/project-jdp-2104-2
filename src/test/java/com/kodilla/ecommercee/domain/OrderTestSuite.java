@@ -38,35 +38,26 @@ public class OrderTestSuite {
 
         //CleanUp
         orderRepository.deleteById(id);
-        System.out.println(1);
     }
 
     @Test
     public void testReadOrder() {
         //Given
         Order order = new Order();
-        User user = new User(1L, "Josh", false, 1,
-                LocalDateTime.of(2021,5,5,10, 10), new ArrayList<>());
 
         //When
         order.setStatus(OrderStatus.SUBMITTED);
-        order.setUser(user);
-        userRespository.save(user);
         orderRepository.save(order);
         Long id = order.getOrderId();
-        Long id2 = user.getUserId();
         Optional<Order> ifPresent = orderRepository.findById(id);
         OrderStatus status = OrderStatus.SUBMITTED;
 
         //Then
         assertTrue(ifPresent.isPresent());
-        assertEquals("Josh", order.getUser().getUsername());
-        assertEquals(1, order.getUser().getUserKey());
         assertEquals(status,order.getStatus());
 
         //CleanUp
         orderRepository.deleteById(id);
-        userRespository.deleteById(id2);
     }
 
     @Test
@@ -89,7 +80,6 @@ public class OrderTestSuite {
 
         //Cleanup
         orderRepository.deleteById(id);
-        System.out.println(2);
     }
 
     @Test
@@ -105,7 +95,6 @@ public class OrderTestSuite {
 
         //Then
         assertFalse(ifPresent.isPresent());
-        System.out.println(3);
     }
 
     @Test
@@ -139,6 +128,5 @@ public class OrderTestSuite {
         orderRepository.deleteById(id2);
         orderRepository.deleteById(id3);
         userRespository.delete(user);
-        System.out.println(4);
     }
 }
