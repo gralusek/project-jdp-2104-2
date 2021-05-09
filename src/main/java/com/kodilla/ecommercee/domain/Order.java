@@ -25,5 +25,8 @@ public class Order {
     @ManyToOne
     @JoinColumn(name = "userId")
     private User user;
-    
+
+    public Order(User user) {
+        this.user = user;
+    }
 }
