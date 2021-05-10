@@ -15,7 +15,7 @@ import javax.persistence.*;
 public class Order {
     @Id
     @GeneratedValue
-    @Column(name = "id", nullable = false)
+    @Column(name = "id")
     private long orderId;
 
     @Column(name = "status")
