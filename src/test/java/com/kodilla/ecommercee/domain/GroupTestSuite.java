@@ -2,6 +2,7 @@ package com.kodilla.ecommercee.domain;
 
 import com.kodilla.ecommercee.dao.GroupRepository;
 import com.kodilla.ecommercee.dao.ProductRepository;
+import com.kodilla.ecommercee.exceptions.GroupNotExist;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -24,13 +25,12 @@ public class GroupTestSuite {
     @Test
     public void testCreate(){
         //Given
-        Group group1 = new Group(1L,"Test", new ArrayList<>());
+        Group group1 = new Group("Test");
         //When
         groupRepository.save(group1);
-        Long group1Id = group1.getGroupId();
         //Then
-        assertNotEquals(0,group1Id);
-        assertEquals(0,group1.getProducts().size());
+        assertNotEquals(0,group1.getGroupId());
+        assertEquals(1,groupRepository.count());
         //Cleanup
         try {
             groupRepository.deleteAll();
@@ -43,16 +43,15 @@ public class GroupTestSuite {
     @Test
     public void testDelete(){
         //Given
-        Group group1 = new Group(1L,"Test", new ArrayList<>());
-        long id = group1.getGroupId();
+        Group group1 = new Group("Test");
         //When
         groupRepository.save(group1);
         try{
-            groupRepository.deleteById(id);
+            groupRepository.deleteById(group1.getGroupId());
         } catch (Exception e){
             //do nothing
         }
-        Optional<Group> output = groupRepository.findById(id);
+        Optional<Group> output = groupRepository.findById(group1.getGroupId());
         //Then
         assertFalse(output.isPresent());
     }
@@ -60,11 +59,10 @@ public class GroupTestSuite {
     @Test
     public void testRead(){
         //Given
-        Group group1 = new Group(1L,"Test", new ArrayList<>());
-        long id = group1.getGroupId();
+        Group group1 = new Group("Test");
         //When
         groupRepository.save(group1);
-        Optional<Group> output = groupRepository.findById(id);
+        Optional<Group> output = groupRepository.findById(group1.getGroupId());
         //Then
         assertTrue(output.isPresent());
         //Cleanup
@@ -76,14 +74,16 @@ public class GroupTestSuite {
     }
 
     @Test
-    public void testUpdate(){
+    public void testUpdate() throws GroupNotExist {
         //Given
-        Group group1 = new Group(1L,"Test", new ArrayList<>());
+        Group group1 = new Group("Test");
         //When
         groupRepository.save(group1);
-        group1.setName("updated");
+        long id = group1.getGroupId();
+        Group output = groupRepository.findById(id).orElseThrow(GroupNotExist::new);
+        output.setName("updated");
         //Then
-        assertEquals("updated", group1.getName());
+        assertEquals("updated", output.getName());
         //Cleanup
         try {
             groupRepository.deleteAll();
@@ -102,7 +102,7 @@ public class GroupTestSuite {
         groupRepository.save(group1);
         //Then
         assertNotEquals(0,group1.getGroupId());
-        assertEquals(1,group1.getProducts().size());
+        assertEquals(1,groupRepository.count());
         try {
             groupRepository.deleteAll();
         } catch (Exception e ){

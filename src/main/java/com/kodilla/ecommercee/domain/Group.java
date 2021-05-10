@@ -13,14 +13,14 @@ import java.util.List;
 @AllArgsConstructor
 @Getter
 @Setter
-@Entity(name = "`Groups`")
+@Entity(name = "Groups")
 public class Group {
     @Id
     @GeneratedValue
     @Column(name = "id", nullable = false)
     private Long groupId;
 
-    @Column(name = "name")
+    @Column(name = "name", nullable = false)
     private String name;
 
     @OneToMany(
@@ -30,4 +30,9 @@ public class Group {
             fetch = FetchType.LAZY
     )
     private List<Product> products;
+
+    public Group(String name){
+        this.name = name;
+        products = new ArrayList<>();
+    }
 }
