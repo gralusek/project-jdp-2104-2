@@ -6,15 +6,14 @@ import com.kodilla.ecommercee.domain.User;
 import com.kodilla.ecommercee.exceptions.OrderNotExist;
 import com.kodilla.ecommercee.exceptions.UserNotExist;
 import com.kodilla.ecommercee.repositories.OrderRepository;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import java.util.Optional;
 
-import static org.junit.Assert.*;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -35,8 +34,8 @@ public class UserTestSuite {
 
         //Then
         long id = user.getUserId();
-        long result = userService.count();
-        assertEquals(1,result);
+        Optional<User> ifpresent = userService.findUserById(id);
+        assertTrue(ifpresent.isPresent());
 
         //Clean up
         try{
@@ -156,3 +155,4 @@ public class UserTestSuite {
     }
 
 }
+
