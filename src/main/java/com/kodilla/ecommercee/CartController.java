@@ -14,8 +14,8 @@ import java.util.List;
 public class CartController {
 
     @GetMapping(value = "getCart")
-    public CartDto getCart(@RequestParam Long cartId){
-        return new CartDto(cartId, new ArrayList<>(), new OrderDto(cartId));
+    public CartDto getCart(@RequestParam Long cartId, @RequestParam String status){
+        return new CartDto(cartId, new ArrayList<>(), new OrderDto(cartId, status));
     }
 
     @PostMapping(value = "createCart", consumes = MediaType.APPLICATION_JSON_VALUE )
@@ -38,7 +38,6 @@ public class CartController {
     }
 
     @PostMapping(value = "createOrder")
-    public OrderDto createOrder(@RequestParam Long cartId){
-        return new OrderDto(cartId);
+    public void createOrder(@RequestBody OrderDto orderDto){
     }
 }
