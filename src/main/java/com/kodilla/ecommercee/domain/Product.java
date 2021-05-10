@@ -3,10 +3,12 @@ package com.kodilla.ecommercee.domain;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.List;
+import java.util.ArrayList;
 
 @Data
 @NoArgsConstructor
@@ -42,4 +44,8 @@ public class Product {
             inverseJoinColumns = {@JoinColumn(name = "Cart_Id", referencedColumnName = "id")}
     )
     private List<Cart> productsInCart;
+
+    public Product() {
+        carts = new ArrayList<>();
+    }
 }
