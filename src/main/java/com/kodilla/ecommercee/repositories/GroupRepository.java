@@ -1,4 +1,4 @@
-package com.kodilla.ecommercee.dao;
+package com.kodilla.ecommercee.repositories;
 
 import com.kodilla.ecommercee.domain.Group;
 import org.springframework.data.repository.CrudRepository;

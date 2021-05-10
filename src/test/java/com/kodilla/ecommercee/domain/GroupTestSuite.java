@@ -1,18 +1,20 @@
 package com.kodilla.ecommercee.domain;
 
-import com.kodilla.ecommercee.dao.GroupRepository;
-import com.kodilla.ecommercee.dao.ProductRepository;
+import com.kodilla.ecommercee.repositories.GroupRepository;
+import com.kodilla.ecommercee.repositories.ProductRepository;
 import com.kodilla.ecommercee.exceptions.GroupNotExist;
 import org.junit.jupiter.api.Test;
+import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.ArrayList;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-
+@RunWith(SpringRunner.class)
 @SpringBootTest
 public class GroupTestSuite {
 
