@@ -27,6 +27,6 @@ public class ProductController {
         return new ProductDto(1L, "name", "description", 1.0);
     }
     @PostMapping
-    public void createProduct(@PathVariable ProductDto productDto) {
+    public void createProduct(@RequestBody ProductDto productDto) {
     }
 }

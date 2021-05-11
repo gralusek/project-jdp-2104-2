@@ -2,6 +2,9 @@ package com.kodilla.ecommercee.Dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import org.w3c.dom.stylesheets.LinkStyle;
+
+import java.util.List;
 
 @Getter
 @AllArgsConstructor
