@@ -39,7 +39,7 @@ public class Product {
     )
     private List<Cart> carts;
 
-    public Product() {
+    public Product(){
         carts = new ArrayList<>();
     }
 }
