@@ -3,14 +3,17 @@ package com.kodilla.ecommercee.domain;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
-@Entity(name = "`Groups`")
+@Setter
+@Entity(name = "Groups")
 public class Group {
     @Id
     @GeneratedValue
@@ -27,4 +30,9 @@ public class Group {
             fetch = FetchType.LAZY
     )
     private List<Product> products;
+
+    public Group(String name){
+        this.name = name;
+        products = new ArrayList<>();
+    }
 }
