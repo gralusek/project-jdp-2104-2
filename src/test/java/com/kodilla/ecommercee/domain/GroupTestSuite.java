@@ -31,7 +31,6 @@ public class GroupTestSuite {
         //When
         groupRepository.save(group1);
         //Then
-        assertNotEquals(0,group1.getGroupId());
         assertEquals(1,groupRepository.count());
         //Cleanup
         try {
@@ -103,7 +102,6 @@ public class GroupTestSuite {
         //When
         groupRepository.save(group1);
         //Then
-        assertNotEquals(0,group1.getGroupId());
         assertEquals(1,groupRepository.count());
         try {
             groupRepository.deleteAll();

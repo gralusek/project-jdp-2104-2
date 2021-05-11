@@ -26,7 +26,8 @@ public class Product {
     @ManyToMany(cascade = CascadeType.ALL, mappedBy = "products")
     private List<Cart> carts;
 
-    public Product() {
+    public Product(){
         carts = new ArrayList<>();
     }
+
 }
