@@ -6,27 +6,28 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@CrossOrigin("*")
 @RestController
 @RequestMapping("/v1/product")
 public class ProductController {
-    @GetMapping
+
+    @GetMapping(value = "getProducts")
     public List<ProductDto> getProducts() {
         return new ArrayList<>();
     }
-    @GetMapping("/{productId}/")
-    public ProductDto getProduct(@PathVariable Long productId) {
-        return new ProductDto(1L, "name", "description", 1.0);
-    }
-    @DeleteMapping("/{productId}/")
-    public void deleteProduct(@PathVariable Long productId) {
 
+    @GetMapping(value = "getProduct")
+    public void  getProduct(@RequestParam Long productId) {
     }
-    @PutMapping
-    public ProductDto updateProduct(@RequestBody ProductDto productDto) {
-        return new ProductDto(1L, "name", "description", 1.0);
+
+   @DeleteMapping(value = "deleteProduct")
+    public void deleteProduct(@RequestParam Long productId) {
     }
-    @PostMapping
+
+    @PutMapping(value = "updateProduct")
+    public void updateProduct(@RequestBody ProductDto productDto) {
+    }
+
+    @PostMapping(value = "createProduct")
     public void createProduct(@RequestBody ProductDto productDto) {
     }
 }
