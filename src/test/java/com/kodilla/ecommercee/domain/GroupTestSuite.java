@@ -97,7 +97,8 @@ public class GroupTestSuite {
     public void testRelations(){
         //Given
         Group group1 = new Group(1L,"Test", new ArrayList<>());
-        Product product1 = new Product(1L, group1, new ArrayList<>());
+        Product product1 = new Product(1L, "name", "description",
+                10.00, group1, new ArrayList<>());
         group1.getProducts().add(product1);
         //When
         groupRepository.save(group1);
@@ -108,7 +109,7 @@ public class GroupTestSuite {
         } catch (Exception e ){
             //do nothing
         }
-        assertFalse(productRepository.findById(product1.getProductId()).isPresent());
+        assertFalse(productRepository.findById(product1.getId()).isPresent());
     }
 
 }
