@@ -12,11 +12,13 @@ public class ProductController {
 
     @GetMapping(value = "getProducts")
     public List<ProductDto> getProducts() {
-        return new ArrayList<>();
+        List<ProductDto> products = new ArrayList<>();
+        return products;
     }
 
     @GetMapping(value = "getProduct")
-    public void  getProduct(@RequestParam Long productId) {
+    public ProductDto getProduct(@RequestParam Long productId) {
+        return new ProductDto();
     }
 
    @DeleteMapping(value = "deleteProduct")
