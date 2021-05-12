@@ -35,4 +35,5 @@ public class Group {
         this.name = name;
         products = new ArrayList<>();
     }
+
 }
