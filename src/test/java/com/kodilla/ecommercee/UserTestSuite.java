@@ -3,7 +3,6 @@ package com.kodilla.ecommercee;
 import com.kodilla.ecommercee.dbServices.UserDbService;
 import com.kodilla.ecommercee.domain.Order;
 import com.kodilla.ecommercee.domain.User;
-import com.kodilla.ecommercee.exceptions.OrderNotExist;
 import com.kodilla.ecommercee.exceptions.UserNotExist;
 import com.kodilla.ecommercee.repositories.OrderRepository;
 import org.junit.jupiter.api.Test;

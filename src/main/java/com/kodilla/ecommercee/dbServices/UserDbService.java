@@ -1,7 +1,6 @@
 package com.kodilla.ecommercee.dbServices;
 
 import com.kodilla.ecommercee.domain.User;
-import com.kodilla.ecommercee.exceptions.UserNotExist;
 import com.kodilla.ecommercee.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -24,9 +23,5 @@ public class UserDbService {
 
     public void deleteById (final Long id) {
         repository.deleteById(id);
-    }
-
-    public long count () {
-        return repository.count();
     }
 }
