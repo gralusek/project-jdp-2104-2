@@ -1,6 +1,7 @@
 package com.kodilla.ecommercee;
 
 import com.kodilla.ecommercee.Dto.OrderDto;
+import com.kodilla.ecommercee.domain.Order;
 import com.kodilla.ecommercee.exceptions.OrderNotExist;
 import com.kodilla.ecommercee.mapper.OrderMapper;
 import com.kodilla.ecommercee.service.*;
@@ -23,13 +24,13 @@ public class OrderController {
 
     @GetMapping(value = "getOrders")
     public List<OrderDto> getOrders() {
-        List<OrderDto> orders = new ArrayList<>();
-        return  orders;
+        List<Order> orders = service.getOrders();
+        return orderMapper.mapToOrderDtoList(orders);
     }
     @PostMapping(value = "addOrder")
-    public OrderDto addOrder(@RequestBody OrderDto orderDto) {
-        OrderDto newOrder = new OrderDto();
-        return service.createOrder(newOrder);
+    public void addOrder(@RequestBody OrderDto orderDto) {
+        Order newOrder = orderMapper.maptoOrder(orderDto);
+        service.createOrder(newOrder);
     }
 
     @GetMapping(value = "getOrder")
@@ -41,8 +42,9 @@ public class OrderController {
 
     @PutMapping(value = "updateOrder")
     public OrderDto updateOrder(@RequestBody OrderDto orderDto) {
-        OrderDto updatedOrder = new OrderDto();
-        return updatedOrder;
+        Order order = orderMapper.maptoOrder(orderDto);
+        Order updatedOrder = service.createOrder(order);
+        return orderMapper.maptoOrderDto(updatedOrder);
     }
 
     @DeleteMapping(value = "deleteOrder")
