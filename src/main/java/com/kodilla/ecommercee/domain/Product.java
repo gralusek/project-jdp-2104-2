@@ -1,33 +1,45 @@
 package com.kodilla.ecommercee.domain;
 
 import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.Data;
 
 import javax.persistence.*;
-import java.util.ArrayList;
+import javax.validation.constraints.NotNull;
 import java.util.List;
+import java.util.ArrayList;
 
+@Data
 @AllArgsConstructor
-@Getter
-@Setter
 @Entity(name = "Products")
 public class Product {
+
     @Id
     @GeneratedValue
-    @Column(name = "id", nullable = false)
-    private long productId;
+    @Column(name = "id")
+    private Long id;
+
+    @Column(name = "name")
+    private String name;
+
+    @Column(name = "description")
+    private String description;
+
+    @Column(name = "price")
+    private double price;
 
     @ManyToOne
-    @JoinColumn(name = "groupId")
+    @JoinColumn(name = "groupID")
     private Group group;
 
-    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "products")
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable (
+        name = "Join_Cart_Product",
+        joinColumns = {@JoinColumn(name = "Product_Id", referencedColumnName = "id")},
+            inverseJoinColumns = {@JoinColumn(name = "Cart_Id", referencedColumnName = "id")}
+    )
     private List<Cart> carts;
 
     public Product(){
         carts = new ArrayList<>();
     }
-
 }

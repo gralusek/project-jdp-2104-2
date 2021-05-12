@@ -15,7 +15,7 @@ import javax.persistence.*;
 public class Order {
     @Id
     @GeneratedValue
-    @Column(name = "id", nullable = false)
+    @Column(name = "id")
     private long orderId;
 
     @Column(name = "status")
@@ -26,6 +26,10 @@ public class Order {
     @JoinColumn(name = "userId")
     private User user;
 
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "cartId")
+    private Cart cart;
+    
     public Order(User user) {
         this.user = user;
     }
