@@ -11,6 +11,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.net.PortUnreachableException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -99,21 +101,19 @@ class ProductTestSuite {
     public void testRelations(){
         //Given
         Product product = new Product();
-        Group group = new Group("test");
         Cart cart1 = new Cart();
         Cart cart2 = new Cart();
+        Group group = new Group("test");
         //When
-        productRepository.save(product);
-        groupRepository.save(group);
-        cartRepository.save(cart1);
-        cartRepository.save(cart2);
         product.setGroup(group);
         product.getCarts().add(cart1);
         product.getCarts().add(cart2);
+        productRepository.save(product);
         //Then
+        assertTrue(cartRepository.existsById(cart1.getCartId()));
+        assertTrue(cartRepository.existsById(cart2.getCartId()));
         assertEquals(1,productRepository.count());
-        assertEquals(2,cartRepository.count());
-        assertEquals(1,groupRepository.count());
+        assertTrue(groupRepository.existsById(group.getGroupId()));
         //Cleanup
         productRepository.deleteAll();
         groupRepository.deleteAll();

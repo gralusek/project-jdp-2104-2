@@ -27,7 +27,7 @@ public class Product {
     @Column(name = "price")
     private double price;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "groupID")
     private Group group;
 
