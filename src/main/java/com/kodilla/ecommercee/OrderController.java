@@ -37,7 +37,6 @@ public class OrderController {
     public OrderDto getOrder(@RequestParam Long id) throws OrderNotExist {
         return orderMapper.maptoOrderDto(
                 service.getOrder(id).orElseThrow(OrderNotExist::new));
-
     }
 
     @PutMapping(value = "updateOrder")

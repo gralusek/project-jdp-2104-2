@@ -18,7 +18,18 @@ public class UserMapper {
                 userDto.isBlocked(),
                 userDto.getUserKey(),
                 userDto.getKeyValidDate(),
-                orderMapper.mapToOrderDtoList(userDto.getOrders()) // to w nawiasie też na czerwono
+                orderMapper.mapToOrderList(userDto.getOrders())
+        );
+    }
+
+    public UserDto mapToUserDto(final User user) {
+        return new UserDto(
+                user.getUserId(),
+                user.getUsername(),
+                user.isBlocked(),
+                user.getUserKey(),
+                user.getKeyValidDate(),
+                orderMapper.mapToOrderDtoList(user.getOrders())
         );
     }
 }

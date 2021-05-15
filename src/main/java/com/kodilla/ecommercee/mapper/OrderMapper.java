@@ -26,13 +26,27 @@ public class OrderMapper {
         return new OrderDto(
                 order.getOrderId(),
                 order.getStatus(),
-                userMapper. //co tutaj dalej
+                userMapper.mapToUserDto(order.getUser())
         );
     }
 
-   public List<OrderDto> mapToOrderDtoList(final List<Order> ordersList) {
+   public List<OrderDto> mapToOrderDtoList(final List<Order> ordersDtoList) {
+        return ordersDtoList.stream()
+                .map(orderDto -> new OrderDto(
+                        orderDto.getOrderId(),
+                        orderDto.getStatus(),
+                        userMapper.mapToUserDto(orderDto.getUser())
+                ))
+                .collect(Collectors.toList());
+    }
+
+    public List<Order> mapToOrderList(final List<OrderDto> ordersList) {
         return ordersList.stream()
-                .map(this::mapToOrderDtoList) // to na czerowno mi świeci
+                .map(order -> new Order(
+                        order.getId(),
+                        order.getStatus(),
+                        userMapper.maptoUser(order.getUserDto())
+                ))
                 .collect(Collectors.toList());
     }
 }
