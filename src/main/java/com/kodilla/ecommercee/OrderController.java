@@ -29,21 +29,21 @@ public class OrderController {
     }
     @PostMapping(value = "addOrder")
     public void addOrder(@RequestBody OrderDto orderDto) {
-        Order newOrder = orderMapper.maptoOrder(orderDto);
+        Order newOrder = orderMapper.mapToOrder(orderDto);
         service.createOrder(newOrder);
     }
 
     @GetMapping(value = "getOrder")
     public OrderDto getOrder(@RequestParam Long id) throws OrderNotExist {
-        return orderMapper.maptoOrderDto(
+        return orderMapper.mapToOrderDto(
                 service.getOrder(id).orElseThrow(OrderNotExist::new));
     }
 
     @PutMapping(value = "updateOrder")
     public OrderDto updateOrder(@RequestBody OrderDto orderDto) {
-        Order order = orderMapper.maptoOrder(orderDto);
+        Order order = orderMapper.mapToOrder(orderDto);
         Order updatedOrder = service.createOrder(order);
-        return orderMapper.maptoOrderDto(updatedOrder);
+        return orderMapper.mapToOrderDto(updatedOrder);
     }
 
     @DeleteMapping(value = "deleteOrder")

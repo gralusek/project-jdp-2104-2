@@ -14,38 +14,45 @@ public class OrderMapper {
     @Autowired
     UserMapper userMapper;
 
-    public Order maptoOrder(final OrderDto orderDto) {
+    @Autowired
+    CartMapper cartMapper;
+
+    public Order mapToOrder(final OrderDto orderDto) {
         return new Order(
                 orderDto.getId(),
                 orderDto.getStatus(),
-                userMapper.maptoUser(orderDto.getUserDto())
+                userMapper.mapToUser(orderDto.getUserDto()),
+                cartMapper.mapToCart(orderDto.getCartDto())
         );
     }
 
-    public OrderDto maptoOrderDto(final Order order) {
+    public OrderDto mapToOrderDto(final Order order) {
         return new OrderDto(
                 order.getOrderId(),
                 order.getStatus(),
-                userMapper.mapToUserDto(order.getUser())
+                userMapper.mapToUserDto(order.getUser()),
+                cartMapper.mapToCartDto(order.getCart())
         );
     }
 
-   public List<OrderDto> mapToOrderDtoList(final List<Order> ordersDtoList) {
-        return ordersDtoList.stream()
-                .map(orderDto -> new OrderDto(
-                        orderDto.getOrderId(),
-                        orderDto.getStatus(),
-                        userMapper.mapToUserDto(orderDto.getUser())
+   public List<OrderDto> mapToOrderDtoList(final List<Order> ordersList) {
+        return ordersList.stream()
+                .map(order -> new OrderDto(
+                        order.getOrderId(),
+                        order.getStatus(),
+                        userMapper.mapToUserDto(order.getUser()),
+                        cartMapper.mapToCartDto(order.getCart())
                 ))
                 .collect(Collectors.toList());
     }
 
-    public List<Order> mapToOrderList(final List<OrderDto> ordersList) {
-        return ordersList.stream()
-                .map(order -> new Order(
-                        order.getId(),
-                        order.getStatus(),
-                        userMapper.maptoUser(order.getUserDto())
+    public List<Order> mapToOrderList(final List<OrderDto> ordersDtoList) {
+        return ordersDtoList.stream()
+                .map(orderDto -> new Order(
+                        orderDto.getId(),
+                        orderDto.getStatus(),
+                        userMapper.mapToUser(orderDto.getUserDto()),
+                        cartMapper.mapToCart(orderDto.getCartDto())
                 ))
                 .collect(Collectors.toList());
     }

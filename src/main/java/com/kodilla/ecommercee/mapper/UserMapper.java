@@ -11,7 +11,7 @@ public class UserMapper {
     @Autowired
     OrderMapper orderMapper;
 
-    public User maptoUser(final UserDto userDto) {
+    public User mapToUser(final UserDto userDto) {
         return new User(
                 userDto.getUserId(),
                 userDto.getUsername(),

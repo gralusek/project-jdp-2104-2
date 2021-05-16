@@ -13,4 +13,5 @@ public class OrderDto {
     private Long id;
     private OrderStatus status;
     private UserDto userDto;
+    private CartDto cartDto;
 }
