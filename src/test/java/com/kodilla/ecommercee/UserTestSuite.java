@@ -112,7 +112,7 @@ public class UserTestSuite {
     public void testUserGenerateKey() throws UserNotExist {
         //Given
         User user = new User("testUserName");
-        user.generateKey();
+        userService.generateKey(user);
 
         //When
         userService.saveUser(user);

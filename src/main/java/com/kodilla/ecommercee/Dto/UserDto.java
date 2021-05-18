@@ -17,5 +17,5 @@ public class UserDto {
     private boolean isBlocked;
     private int userKey;
     private LocalDateTime keyValidDate;
-    private List<Order> orders;
+    private List<OrderDto> orders;
 }
