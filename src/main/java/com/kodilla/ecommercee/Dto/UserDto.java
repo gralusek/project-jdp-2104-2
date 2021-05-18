@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.NonNull;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @AllArgsConstructor
 @Getter
@@ -15,4 +16,5 @@ public class UserDto {
     private boolean isBlocked;
     private int userKey;
     private LocalDateTime keyValidDate;
+    private List<OrderDto> orderDtos;
 }

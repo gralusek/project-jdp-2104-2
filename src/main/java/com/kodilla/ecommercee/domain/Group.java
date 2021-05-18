@@ -12,7 +12,7 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity(name = "Groups")
+@Entity(name = "ProductGroups")
 public class Group {
 
     @Id
