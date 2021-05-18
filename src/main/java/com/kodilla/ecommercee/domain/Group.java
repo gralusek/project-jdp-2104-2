@@ -12,7 +12,7 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity(name = "`Groups`")
+@Entity(name = "ProductGroup")
 public class Group {
 
     @Id
@@ -35,5 +35,4 @@ public class Group {
         this.name = name;
         products = new ArrayList<>();
     }
-
 }
