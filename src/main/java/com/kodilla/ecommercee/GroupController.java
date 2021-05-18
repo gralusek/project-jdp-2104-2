@@ -27,7 +27,7 @@ public class GroupController {
     }
 
     @PutMapping(value = "updateGroup")
-    public GroupDto updateGroup(@RequestParam GroupDto groupDto) {
+    public GroupDto updateGroup(@RequestBody GroupDto groupDto) {
         return new GroupDto(1L, "Edited group name", new ArrayList<>());
     }
 
