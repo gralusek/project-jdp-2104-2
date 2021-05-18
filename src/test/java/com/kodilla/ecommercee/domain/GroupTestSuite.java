@@ -102,7 +102,7 @@ public class GroupTestSuite {
         //When
         groupRepository.save(group1);
         //Then
-        assertEquals(1,productRepository.count());
+        assertEquals(1,groupRepository.count());
         try {
             groupRepository.deleteAll();
         } catch (Exception e ){
