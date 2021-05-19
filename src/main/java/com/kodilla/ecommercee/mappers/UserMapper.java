@@ -17,7 +17,7 @@ public class UserMapper {
                 userDto.isBlocked(),
                 userDto.getUserKey(),
                 userDto.getKeyValidDate(),
-                orderMapper.mapToOrderList(userDto.getOrderDtos())
+                orderMapper.mapToOrderList(userDto.getOrders())
         );
     }
 
