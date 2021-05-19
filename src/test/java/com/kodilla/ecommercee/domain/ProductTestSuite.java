@@ -36,7 +36,8 @@ class ProductTestSuite {
         //When
         productRepository.save(product);
         //Then
-        assertEquals(1,productRepository.count());
+        assertTrue(productRepository.existsById(product.getId()));
+//        assertEquals(1,productRepository.count());
         //Cleanup
         try{
             productRepository.deleteAll();
@@ -112,7 +113,6 @@ class ProductTestSuite {
         //Then
         assertTrue(cartRepository.existsById(cart1.getCartId()));
         assertTrue(cartRepository.existsById(cart2.getCartId()));
-        assertEquals(1,productRepository.count());
         assertTrue(groupRepository.existsById(group.getGroupId()));
         //Cleanup
         productRepository.deleteAll();

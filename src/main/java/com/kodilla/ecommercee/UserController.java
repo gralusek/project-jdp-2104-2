@@ -1,8 +1,9 @@
 package com.kodilla.ecommercee;
 
-import com.kodilla.ecommercee.Dto.UserDto;
+import com.kodilla.ecommercee.dbServices.UserDbService;
+import com.kodilla.ecommercee.domain.User;
+import com.kodilla.ecommercee.exceptions.UserNotExist;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -10,9 +11,12 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class UserController {
 
-    @PostMapping(value = "createUser", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void createUser(@RequestBody UserDto userDto) {
+    private final UserDbService service;
 
+    @PostMapping(value = "createUser")
+    public void createUser(@RequestParam String username) {
+        User newUser = new User(username);
+        service.saveUser(newUser);
     }
 
     @PutMapping(value = "blockUser")
@@ -21,8 +25,10 @@ public class UserController {
     }
 
     @PutMapping(value = "generateKey")
-    public int generateKey(@RequestParam long userId) {
-        int key = 123456789;
+    public int generateKey(@RequestParam long userId) throws UserNotExist {
+        User user = service.findUserById(userId).orElseThrow(UserNotExist::new);
+        int key = service.generateKey(user);
+        service.saveUser(user);
         return key;
     }
 }

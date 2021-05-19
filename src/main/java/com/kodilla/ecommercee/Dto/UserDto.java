@@ -1,5 +1,6 @@
 package com.kodilla.ecommercee.Dto;
 
+import com.kodilla.ecommercee.domain.Order;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NonNull;
@@ -16,5 +17,5 @@ public class UserDto {
     private boolean isBlocked;
     private int userKey;
     private LocalDateTime keyValidDate;
-    private List<OrderDto> orderDtos;
+    private List<OrderDto> orders;
 }

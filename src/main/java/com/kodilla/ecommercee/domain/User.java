@@ -44,13 +44,7 @@ public class User {
         orders.add(order);
     }
 
-    public int generateKey() {
-        int max = 999999999;
-        int min = 100000000;
-        keyValidDate = LocalDateTime.now().plusHours(1);
-        userKey = (int) (Math.random() * ((max - min) + 1)) + min;
-        return userKey;
-    }
+
 
     public User(String username) {
         this.username = username;

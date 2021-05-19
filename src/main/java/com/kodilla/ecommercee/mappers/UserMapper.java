@@ -1,5 +1,4 @@
 package com.kodilla.ecommercee.mappers;
-
 import com.kodilla.ecommercee.Dto.UserDto;
 import com.kodilla.ecommercee.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;

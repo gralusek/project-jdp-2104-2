@@ -31,14 +31,13 @@ public class GroupTestSuite {
         //When
         groupRepository.save(group1);
         //Then
-        assertEquals(1,groupRepository.count());
+        assertTrue(groupRepository.findById(group1.getGroupId()).isPresent());
         //Cleanup
         try {
             groupRepository.deleteAll();
         } catch (Exception e ){
             //do nothing
         }
-
     }
 
     @Test
