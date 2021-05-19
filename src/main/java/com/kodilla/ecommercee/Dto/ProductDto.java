@@ -12,6 +12,9 @@ import java.util.List;
 @NoArgsConstructor
 public class ProductDto {
     private Long id;
+    private String name;
+    private String description;
+    private double price;
     private GroupDto groupsDto;
     private List<CartDto> cartDtoList;
 }

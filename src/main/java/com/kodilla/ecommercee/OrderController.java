@@ -17,19 +17,19 @@ public class OrderController {
     }
     @PostMapping(value = "addOrder")
     public OrderDto addOrder(@RequestBody OrderDto orderDto) {
-        OrderDto newOrder = new OrderDto(1L,"new Order");
+        OrderDto newOrder = new OrderDto();
         return newOrder;
     }
 
     @GetMapping(value = "getOrder")
     public OrderDto getOrder(@RequestParam Long id) {
-        OrderDto exampleOrder = new OrderDto(1L,"example Order");
+        OrderDto exampleOrder = new OrderDto();
         return exampleOrder;
     }
 
     @PutMapping(value = "updateOrder")
     public OrderDto updateOrder(@RequestBody OrderDto orderDto) {
-        OrderDto updatedOrder = new OrderDto(2L, "updated status");
+        OrderDto updatedOrder = new OrderDto();
         return updatedOrder;
     }
 
