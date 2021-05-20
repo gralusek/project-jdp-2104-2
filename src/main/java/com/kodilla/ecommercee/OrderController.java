@@ -3,7 +3,7 @@ package com.kodilla.ecommercee;
 import com.kodilla.ecommercee.Dto.OrderDto;
 import com.kodilla.ecommercee.domain.Order;
 import com.kodilla.ecommercee.exceptions.OrderNotExist;
-import com.kodilla.ecommercee.mapper.OrderMapper;
+import com.kodilla.ecommercee.mappers.OrderMapper;
 import com.kodilla.ecommercee.service.*;
 import org.springframework.web.bind.annotation.*;
 
@@ -41,7 +41,9 @@ public class OrderController {
 
     @PutMapping(value = "updateOrder")
     public OrderDto updateOrder(@RequestBody OrderDto orderDto) {
+        Long id = orderDto.getId();
         Order order = orderMapper.mapToOrder(orderDto);
+        service.deleteOrder(id);
         Order updatedOrder = service.createOrder(order);
         return orderMapper.mapToOrderDto(updatedOrder);
     }

@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class OrderDto {
     private Long id;
-    private OrderStatus status;
+    private OrderStatus orderStatus;
     private UserDto userDto;
     private CartDto cartDto;
 }

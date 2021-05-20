@@ -2,19 +2,17 @@ package com.kodilla.ecommercee.service;
 
 import com.kodilla.ecommercee.domain.Order;
 import com.kodilla.ecommercee.repositories.OrderRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
 public class OrderService {
 
     private final OrderRepository repository;
-
-    public OrderService(OrderRepository repository) {
-        this.repository = repository;
-    }
 
     public List<Order> getOrders() {
         return repository.findAll();
