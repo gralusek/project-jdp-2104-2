@@ -131,4 +131,28 @@ public class OrderTestSuite {
         orderRepository.deleteById(id3);
         userRepository.delete(user);
     }
+
+    @Test
+    public void testFindAll() {
+        //Given
+        Order order1 = new Order();
+        Order order2 = new Order();
+        Order order3 = new Order();
+
+        //When
+        orderRepository.save(order1);
+        orderRepository.save(order2);
+        orderRepository.save(order3);
+        Long id1 = order1.getOrderId();
+        Long id2 = order2.getOrderId();
+        Long id3 = order3.getOrderId();
+
+        //Then
+        assertEquals(3, orderRepository.findAll().size());
+
+        //CleanUp
+        orderRepository.deleteById(id1);
+        orderRepository.deleteById(id2);
+        orderRepository.deleteById(id3);
+    }
 }
