@@ -5,6 +5,9 @@ import com.kodilla.ecommercee.domain.Group;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class GroupMapper {
 
@@ -25,5 +28,11 @@ public class GroupMapper {
                 group.getName(),
                 productMapper.mapToProductDtoList(group.getProducts())
         );
+    }
+
+    public List<GroupDto> mapToGroupDtoList(final List<Group> groupList){
+        return groupList.stream()
+                .map(this::mapToGroupDto)
+                .collect(Collectors.toList());
     }
 }

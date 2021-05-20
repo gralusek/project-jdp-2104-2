@@ -1,7 +1,13 @@
 package com.kodilla.ecommercee;
 
 import com.kodilla.ecommercee.Dto.GroupDto;
-import com.kodilla.ecommercee.Dto.ProductDto;
+import com.kodilla.ecommercee.dbServices.GroupDbService;
+import com.kodilla.ecommercee.domain.Group;
+import com.kodilla.ecommercee.exceptions.GroupNotExist;
+import com.kodilla.ecommercee.mappers.GroupMapper;
+import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
@@ -9,21 +15,32 @@ import java.util.*;
 @RestController
 @RequestMapping("/v1/group")
 public class GroupController {
+    private final GroupMapper groupMapper;
+    private final GroupDbService groupDbService;
+
+    @Autowired
+    public GroupController(GroupMapper groupMapper, GroupDbService groupDbService) {
+        this.groupMapper = groupMapper;
+        this.groupDbService = groupDbService;
+    }
 
     @GetMapping(value="getGroups")
     public List<GroupDto> getGroups() {
-        List<GroupDto> groups = new ArrayList<>();
-        return groups;
+        List<Group> groups = groupDbService.getAllGroups();
+        return groupMapper.mapToGroupDtoList(groups);
     }
 
     @GetMapping(value = "getGroup")
-    public GroupDto getGroup(@RequestParam Long groupId) {
-        return new GroupDto(1L, "test group name", new ArrayList<>());
+    public GroupDto getGroup(@RequestParam Long groupId) throws GroupNotExist {
+        return groupMapper.mapToGroupDto(
+                groupDbService.getGroup(groupId).orElseThrow(GroupNotExist::new)
+        );
     }
 
-    @DeleteMapping(value = "deleteGroup")
-    public void deleteGroup(@RequestParam Long groupId) {
-        System.out.println("Group deleted.");
+    @PostMapping(value = "createGroup", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public void createGroup(@RequestBody GroupDto groupDto) {
+        Group group = groupMapper.mapToGroup(groupDto);
+        groupDbService.createGroup(group);
     }
 
     @PutMapping(value = "updateGroup")
@@ -31,8 +48,8 @@ public class GroupController {
         return new GroupDto(1L, "Edited group name", new ArrayList<>());
     }
 
-    @PostMapping(value = "createGroup")
-    public void createGroup(@RequestBody GroupDto groupDto) {
-
+    @DeleteMapping(value = "deleteGroup")
+    public void deleteGroup(@RequestParam Long groupId) {
+        groupDbService.deleteGroup(groupId);
     }
 }
