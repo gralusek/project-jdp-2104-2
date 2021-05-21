@@ -43,8 +43,11 @@ public class ProductController {
     }
 
     @PutMapping(value = "updateProduct")
-    public ProductDto updateProduct(@RequestParam Long productId, @RequestBody ProductDto productDto) throws ProductNotExist {
-        return productDbService.updateProduct(productId, productDto);
+    public ProductDto updateProduct(@RequestBody ProductDto productDto) {
+        Product product = productMapper.mapToProduct(productDto);
+        productDbService.deleteProduct(product.getId());
+        productDbService.saveProduct(product);
+        return productMapper.mapToProductDto(product);
     }
 
     @PostMapping(value = "createProduct")
