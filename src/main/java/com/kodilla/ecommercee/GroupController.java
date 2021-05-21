@@ -44,9 +44,9 @@ public class GroupController {
     }
 
     @PutMapping(value = "updateGroup")
-    public GroupDto updateGroup(@RequestParam Long groupId, @RequestBody GroupDto groupDto) throws GroupNotExist {
-        Group group = groupDbService.getGroup(groupId).orElseThrow(GroupNotExist::new);
-        group.setName(groupDto.getName());
+    public GroupDto updateGroup(@RequestBody GroupDto groupDto) throws GroupNotExist {
+        Group group = groupMapper.mapToGroup(groupDto);
+        groupDbService.deleteGroup(group.getGroupId());
         groupDbService.saveGroup(group);
         return groupMapper.mapToGroupDto(group);
     }
