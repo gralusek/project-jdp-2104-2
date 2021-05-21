@@ -40,12 +40,12 @@ public class GroupController {
     @PostMapping(value = "createGroup", consumes = MediaType.APPLICATION_JSON_VALUE)
     public void createGroup(@RequestBody GroupDto groupDto) {
         Group group = groupMapper.mapToGroup(groupDto);
-        groupDbService.createGroup(group);
+        groupDbService.saveGroup(group);
     }
 
     @PutMapping(value = "updateGroup")
-    public GroupDto updateGroup(@RequestBody GroupDto groupDto) {
-        return new GroupDto(1L, "Edited group name", new ArrayList<>());
+    public GroupDto updateGroup(@RequestParam Long groupId, @RequestBody GroupDto groupDto) throws GroupNotExist {
+        return groupDbService.updateGroup(groupId, groupDto);
     }
 
     @DeleteMapping(value = "deleteGroup")
