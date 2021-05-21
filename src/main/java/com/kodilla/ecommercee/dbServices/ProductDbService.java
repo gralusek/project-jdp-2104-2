@@ -1,6 +1,5 @@
 package com.kodilla.ecommercee.dbServices;
 
-import com.kodilla.ecommercee.domain.Cart;
 import com.kodilla.ecommercee.domain.Product;
 import com.kodilla.ecommercee.repositories.ProductRepository;
 import lombok.RequiredArgsConstructor;
