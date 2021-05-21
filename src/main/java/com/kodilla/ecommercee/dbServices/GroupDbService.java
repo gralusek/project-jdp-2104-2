@@ -32,13 +32,4 @@ public class GroupDbService {
         groupRepository.deleteById(id);
     }
 
-    public GroupDto updateGroup(final Long groupId, final GroupDto groupDto) throws GroupNotExist {
-        return groupRepository.findById(groupId)
-                .map(group -> {
-                    group.setName(groupDto.getName());
-                    groupRepository.save(group);
-                    return groupMapper.mapToGroupDto(group);
-                })
-                .orElseThrow(() -> new GroupNotExist());
-    }
 }
