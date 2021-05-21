@@ -14,8 +14,9 @@ import java.util.ArrayList;
 public class Product {
 
     @Id
+    @NotNull
     @GeneratedValue
-    @Column(name = "id")
+    @Column(name = "id", unique = true)
     private Long id;
 
     @Column(name = "name")
