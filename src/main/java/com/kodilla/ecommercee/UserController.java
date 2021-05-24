@@ -20,8 +20,10 @@ public class UserController {
     }
 
     @PutMapping(value = "blockUser")
-    public void blockUser(@RequestParam long userId) {
-
+    public void blockUser(@RequestParam long userId) throws UserNotExist {
+        User user = service.findUserById(userId).orElseThrow(UserNotExist::new);
+        user.setBlocked(true);
+        service.saveUser(user);
     }
 
     @PutMapping(value = "generateKey")
